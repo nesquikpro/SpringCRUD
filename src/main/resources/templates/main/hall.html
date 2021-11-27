@@ -22,7 +22,8 @@
     <tr>
         <th scope="col">№ Зала</th>
         <th scope="col">Название</th>
-        <th></th>
+        <th scope="col">Вместимость</th>
+        <th scope="col">Категория</th>
         <th></th>
         <th></th>
     </tr>
@@ -33,7 +34,8 @@
         <tr>
             <td th:text="${el.id}"></td>
             <td th:text="${el.name}"></td>
-            <td><a th:href="'/hall/' + ${el.id}" class="btn btn-outline-warning a-pills">Подробнее</a></td>
+            <td th:text="${el.capacity}"></td>
+            <td th:text="${el.category.name}"></td>
             <td><a th:href="'/hall/' + ${el.id}+ '/edit'" class="btn btn-outline-primary a-pills">Изменить</a></td>
             <td><a th:href="'/hall/' + ${el.id} + '/remove'" class="btn btn-outline-danger a-pills">Удалить</a></td>
         </tr>

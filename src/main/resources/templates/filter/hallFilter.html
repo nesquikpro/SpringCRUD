@@ -31,7 +31,7 @@
             </thead>
         <div th:each="el : ${result}">
             <tr>
-                <td><h3 th:text="${el.hallname}"></h3></td>
+                <td><h3 th:text="${el.name}"></h3></td>
                 <td><a th:href="'/hall/' + ${el.id}+ '/edit'" class="btn btn-outline-primary a-pills">Изменить</a></td>
                 <td><a th:href="'/hall/' + ${el.id} + '/remove'" class="btn btn-outline-danger a-pills">Удалить</a></td>
             </tr>
@@ -50,7 +50,7 @@
             </thead>
         <div th:each="el : ${result_str}">
             <tr>
-                <td><h3 th:text="${el.hallname}"></h3></td>
+                <td><h3 th:text="${el.name}"></h3></td>
                 <td><a th:href="'/hall/' + ${el.id}+ '/edit'" class="btn btn-outline-primary a-pills">Изменить</a></td>
                 <td><a th:href="'/hall/' + ${el.id} + '/remove'" class="btn btn-outline-danger a-pills">Удалить</a></td>
             </tr>

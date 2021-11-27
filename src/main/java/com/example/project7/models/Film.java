@@ -25,7 +25,7 @@ public class Film {
     @Size(min=3, max=256)
     private String description;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = true, cascade = CascadeType.DETACH)
     private Genre genre;
 
     @OneToMany(mappedBy = "hall", fetch = FetchType.EAGER)

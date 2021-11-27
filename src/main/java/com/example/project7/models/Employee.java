@@ -23,7 +23,7 @@ public class Employee {
     private String phone;
 
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = true, cascade = CascadeType.DETACH)
     private Post post;
 
     @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER)

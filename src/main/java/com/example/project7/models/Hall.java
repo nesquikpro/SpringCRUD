@@ -20,7 +20,7 @@ public class Hall {
     @Min(value = 30)
     private Integer capacity;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = true, cascade = CascadeType.DETACH)
     private Category category;
 
     @OneToMany(mappedBy = "hall", fetch = FetchType.EAGER)

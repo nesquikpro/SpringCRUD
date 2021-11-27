@@ -19,9 +19,9 @@ public class Session {
     private Date date;
 
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = true, cascade = CascadeType.DETACH)
     private Hall hall;
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = true, cascade = CascadeType.DETACH)
     private Film film;
 
     public Session(String time, Date date, Hall hall, Film film) {
