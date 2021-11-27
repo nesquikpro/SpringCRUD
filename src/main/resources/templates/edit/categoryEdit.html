@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="/footer :: header"></div>
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+<h1>Редактирование категории</h1>
+<div th:each="el : ${categoryEdit}">
+    <form method="post" class="form-inline" th:object="${category}">
+        <div class="form-group mx-sm-3 mb-2">
+            <label class="sr-only">Название категории</label>
+            <input type="text" th:value="${el.name}" name="name" class="form-control">
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red"></div>
+
+            <label class="sr-only">Цена билета</label>
+            <input type="text" th:value="${el.ticketprice}" name="ticketprice" placeholder="Введите" class="form-control"><br>
+            <div th:if="${#fields.hasErrors('ticketprice')}" th:errors="*{ticketprice}" style="color: red"></div>
+            <br>
+            <button type="submit" class="btn btn-primary mb-2">Сохранить</button>
+        </div>
+    </form>
+</div>
+    </div>
+</div>
+</body>
+</html>

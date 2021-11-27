@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="/footer :: header"></div>
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+<h1>Редактирование местов</h1>
+<div th:each="el : ${placeEdit}">
+    <form method="post" class="form-inline" th:object="${place}">
+
+            <label class="sr-only">Ряд</label>
+            <input type="text" th:value="${el.row}" name="row" class="form-control">
+            <div th:if="${#fields.hasErrors('row')}" th:errors="*{row}" style="color: red"></div>
+            <label class="sr-only">Место</label>
+            <input type="text" th:value="${el.seat}" name="seat" class="form-control"><br>
+            <div th:if="${#fields.hasErrors('seat')}" th:errors="*{seat}" style="color: red"></div>
+            <br>
+            <button type="submit" class="btn btn-primary mb-2">Сохранить</button>
+
+    </form>
+</div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="/footer :: header"></div>
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+<h1>Редактирование сотрудника</h1>
+<div th:each="el : ${employeeEdit}">
+    <form method="post" class="form-inline" th:object="${employee}">
+        <div class="form-group mx-sm-3 mb-2">
+            <label class="sr-only">Имя</label>
+            <input type="text" th:value="${el.firstname}" name="firstname" class="form-control">
+            <div th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}" style="color: red"></div>
+
+            <label class="sr-only">Фамилия</label>
+            <input type="text" th:value="${el.lastname}" name="lastname" class="form-control">
+            <div th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}" style="color: red"></div>
+
+            <label class="sr-only">Отчество</label>
+            <input type="text" th:value="${el.thirdname}" name="thirdname" class="form-control">
+            <div th:if="${#fields.hasErrors('thirdname')}" th:errors="*{thirdname}" style="color: red"></div>
+
+            <label class="sr-only">Почта</label>
+            <input type="text" th:value="${el.email}" name="email" class="form-control">
+            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color: red"></div>
+
+            <label class="sr-only">Телефон</label>
+            <input type="text" th:value="${el.phone}" name="phone" class="form-control">
+            <div th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" style="color: red"></div>
+            <label class="sr-only">Должность</label>
+            <select name="name" class="form-control form-control-sm">
+                <div th:each="element : ${post}">
+                    <option th:text="${element.name}"></option>
+                </div>
+            </select>
+            <br>
+            <button type="submit" class="btn btn-primary mb-2">Сохранить</button>
+        </div>
+    </form>
+</div>
+    </div>
+</div>
+</body>
+</html>

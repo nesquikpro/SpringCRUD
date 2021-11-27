@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="/footer :: header"></div>
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <form action="/place/addPlace" method="post" th:object="${place}" class="form-inline">
+            <div class="form-group mx-sm-3 mb-2">
+                <label class="sr-only">Ряд</label>
+                <input type="text" th:field="*{row}" name="row" placeholder="Введите" class="form-control"><br>
+                <div th:if="${#fields.hasErrors('row')}" th:errors="*{row}" style="color: red"></div>
+                <label class="sr-only">Место</label>
+                <input type="text" th:field="*{seat}" name="seat" placeholder="Введите" class="form-control"><br>
+                <div th:if="${#fields.hasErrors('seat')}" th:errors="*{seat}" style="color: red"></div>
+                <br>
+                <button type="submit" class="btn btn-primary mb-2">Добавить</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

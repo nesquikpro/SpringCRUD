@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    h2{
+        color: darkred;
+    }
+    h3{
+        color: white;
+    }
+</style>
+<body>
+<div th:insert="/footer :: header"></div>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+<h2>Поиск</h2>
+    <form method="post" action="/category/categoryFilter">
+        <input type="text" class="form-control" name="name" placeholder="Введите">
+        <br>
+        <button type="submit" class="btn btn-primary mb-2">Найти</button>
+        <table class="table table-striped table-dark";>
+            <thead>
+            <tr>
+                <th scope="col">Название</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+        <div th:each="el : ${result}">
+            <tr>
+                <td><h3 th:text="${el.name}"></h3></td>
+                <td><a th:href="'/category/' + ${el.id}+ '/edit'" class="btn btn-outline-primary a-pills">Изменить</a></td>
+                <td><a th:href="'/category/' + ${el.id} + '/remove'" class="btn btn-outline-danger a-pills">Удалить</a></td>
+            </tr>
+        </div>
+    </table>
+
+
+        <h2 class="h2class">Поиск по схожести:</h2>
+        <table class="table table-striped table-dark";>
+            <thead>
+            <tr>
+                <th scope="col">Название</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+        <div th:each="el : ${result_str}">
+            <tr>
+                <td><h3 th:text="${el.name}"></h3></td>
+                <td><a th:href="'/category/' + ${el.id}+ '/edit'" class="btn btn-outline-primary a-pills">Изменить</a></td>
+                <td><a th:href="'/category/' + ${el.id} + '/remove'" class="btn btn-outline-danger a-pills">Удалить</a></td>
+            </tr>
+        </div>
+        </table>
+
+
+    </form>
+    </div>
+</div>
+</body>
+</html>

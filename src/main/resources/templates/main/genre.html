@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="/footer :: header"></div>
+<br>
+
+</div>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+<a href="/genre/addGenre"><button type="button" class="btn btn-outline-success">Добавить</button></a>
+        <a href="/genre/genreFilter"><button type="button" class="btn btn-outline-info">Поиск</button></a>
+        <br>
+<br>
+<table class="table table-striped table-dark";>
+    <thead>
+    <tr>
+        <th scope="col">№ Жанра</th>
+        <th scope="col">Название</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tr>
+    </tr>
+    <div th:each="el : ${genre}">
+        <tr>
+            <td th:text="${el.id}"></td>
+            <td th:text="${el.name}"></td>
+            <td><a th:href="'/genre/' + ${el.id}+ '/edit'" class="btn btn-outline-primary a-pills">Изменить</a></td>
+            <td><a th:href="'/genre/' + ${el.id} + '/remove'" class="btn btn-outline-danger a-pills">Удалить</a></td>
+        </tr>
+    </div>
+</table>
+    </div>
+</div>
+</body>
+</html>

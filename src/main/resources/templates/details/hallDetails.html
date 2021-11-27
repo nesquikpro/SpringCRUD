@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="/footer :: header"></div>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+<h2 class="h2class">Зал:</h2>
+<table class="table table-striped table-dark";>
+    <thead>
+    <tr>
+        <th scope="col">Название</th>
+        <th scope="col">Вместимость</th>
+        <th scope="col">Категория</th>
+    </tr>
+    </thead>
+    <div th:each="el : ${hall}">
+        <tr>
+            <td><h3 th:text="${el.name}"></h3></td>
+            <td><h3 th:text="${el.capacity}"></h3></td>
+            <td><h3 th:text="${el.category.name}"></h3></td>
+        </tr>
+    </div>
+</table>
+    </div>
+</div>
+</body>
+</html>
