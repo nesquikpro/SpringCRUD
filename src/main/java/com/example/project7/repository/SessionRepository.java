@@ -7,6 +7,5 @@ import java.util.Date;
 import java.util.List;
 
 public interface SessionRepository extends CrudRepository<Session, Long> {
-    List<Session> findByDate(Date date);
     List<Session> findByDateContaining(Date date);
 }

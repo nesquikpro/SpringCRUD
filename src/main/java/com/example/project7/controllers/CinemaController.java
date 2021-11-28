@@ -763,9 +763,6 @@ public class CinemaController {
     @PostMapping("/session/sessionFilter")
     public String sessionResult(@RequestParam Date date, Model model)
     {
-        List<Session> result = sessionRepository.findByDate(date);
-        model.addAttribute("result", result);
-
         List<Session> result_str = sessionRepository.findByDateContaining(date);
         model.addAttribute("result_str", result_str);
         return "/filter/sessionFilter";
