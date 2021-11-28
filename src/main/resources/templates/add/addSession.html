@@ -6,5 +6,38 @@
 </head>
 <body>
 <div th:insert="/footer :: header"></div>
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <form action="/session/addSession" method="post" th:object="${session}">
+
+
+            <label class="sr-only">Время</label>
+            <input type="text" name="time" th:field="*{time}" placeholder="Введите" class="form-control"><br>
+            <div th:if="${#fields.hasErrors('time')}" th:errors="*{time}" style="color: red"></div>
+            <label class="sr-only">Дата</label>
+            <input type="date" name="date" th:field="*{date}" placeholder="Введите" class="form-control"><br>
+            <div th:if="${#fields.hasErrors('date')}" th:errors="*{date}" style="color: red"></div>
+
+            <label class="sr-only">Фильм</label>
+            <select name="filmname" class="form-control">
+                <div th:each="element : ${film}">
+                    <option th:text="${element.name}"></option>
+                </div>
+            </select>
+
+            <label class="sr-only">Зал</label>
+            <select name="hallname" class="form-control">
+                <div th:each="element : ${hall}">
+                    <option th:text="${element.name}"></option>
+                </div>
+            </select>
+            <br>
+            <button type="submit" class="btn btn-warning">Добавить</button>
+        </form>
+
+    </div>
+</div>
+
 </body>
 </html>

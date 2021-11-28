@@ -564,41 +564,6 @@ public class CinemaController {
         return "/edit/employeeEdit";
     }
 
-//    @PostMapping("/employee/{id}/edit")
-//    public String employeePostUpdate(@Valid Employee employee,BindingResult bindingResultresult,
-//                                  @PathVariable(value = "id") long id,
-//
-//                                     @RequestParam String firstname,
-//                                     @RequestParam String lastname,
-//                                     @RequestParam String thirdname,
-//                                     @RequestParam String phone,
-//                                     @RequestParam String email,
-//                                     @RequestParam String name,
-//                                  Model model){
-//
-//        List<Employee> res = employeeRepository.findByEmail(email);
-//        Post post1 = postRepository.findPostByName(name);
-//
-//        if(bindingResultresult.hasErrors()){
-//            res = new ArrayList<>();
-//            res.add(employee);
-//            model.addAttribute("employeeEdit",res);
-//            return "/edit/employeeEdit";
-//        }
-//
-//        if (res.size()>0)
-//        {
-//            res = new ArrayList<>();
-//            res.add(employee);
-//            model.addAttribute("employeeEdit",res);
-//            return "/edit/employeeEdit";
-//        }
-//        else {
-//            Employee employee1 = new Employee(firstname, lastname, thirdname, email, phone, post1);
-//            employeeRepository.save(employee1);
-//            return "redirect:/employee";
-//        }
-//    }
 
 
     @GetMapping("/genre/genreFilter")
@@ -919,6 +884,47 @@ public class CinemaController {
             filmRepository.save(film1);
             return "redirect:/film";
         }
+    }
+
+
+
+
+
+
+
+
+
+
+
+    @GetMapping("/session/addSession")
+    public String sessionAdd(Session session, Model model)
+    {
+        Iterable<Film> films = filmRepository.findAll();
+        model.addAttribute("film",films);
+
+        Iterable<Hall> halls = hallRepository.findAll();
+        model.addAttribute("hall",halls);
+        return "/add/addSession";
+    }
+
+    @PostMapping("/session/addSession")
+    public String sessionAdd(@Valid Session session, BindingResult bindingResult,
+                             @RequestParam String time,
+                             @RequestParam String date,
+                             @RequestParam String filmname,
+                             @RequestParam String hallname,
+                          Model model) {
+        if (bindingResult.hasErrors())
+            return "/add/addSession";
+
+        List<Session> res = sessionRepository.findByTime(time);
+        Film film1 = filmRepository.findFilmByName(filmname);
+        Hall hall2 = hallRepository.findHallByName(hallname);
+
+
+            Session session1 = new Session(time, date, hall2, film1);
+            sessionRepository.save(session1);
+            return "redirect:/session";
     }
 
 }

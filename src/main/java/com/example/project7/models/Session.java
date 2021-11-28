@@ -1,8 +1,11 @@
 package com.example.project7.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 @Entity
@@ -16,7 +19,7 @@ public class Session {
     @NotNull(message = "Поле не может быть пустым!")
     private String time;
 
-    private Date date;
+    private String date;
 
     @ManyToOne(optional = true, cascade = CascadeType.DETACH)
     private Hall hall;
@@ -24,15 +27,16 @@ public class Session {
     @ManyToOne(optional = true, cascade = CascadeType.REMOVE)
     private Film film;
 
-    public Session(String time, Date date, Hall hall, Film film) {
+
+    public Session() {
+
+    }
+
+    public Session(String time, String date, Hall hall, Film film) {
         this.time = time;
         this.date = date;
         this.hall = hall;
         this.film = film;
-    }
-
-    public Session() {
-
     }
 
     public Long getId() {
@@ -51,11 +55,11 @@ public class Session {
         this.time = time;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
