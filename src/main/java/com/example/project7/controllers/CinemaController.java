@@ -787,4 +787,46 @@ public class CinemaController {
         return "/details/sessionDetails";
     }
 
+
+
+
+
+
+
+
+
+
+
+
+    @GetMapping("/film/filmFilter")
+    public String filmFilter(Model model){
+        return "/filter/filmFilter";
+    }
+
+    @PostMapping("/film/filmFilter")
+    public String filmResult(@RequestParam String name, Model model)
+    {
+        List<Film> result = filmRepository.findByName(name);
+        model.addAttribute("result", result);
+
+        List<Film> result_str = filmRepository.findByNameContaining(name);
+        model.addAttribute("result_str", result_str);
+        return "/filter/filmFilter";
+    }
+
+    @GetMapping("/film/{id}/remove")
+    public String filmPostDelete(@PathVariable(value = "id") long id, Model model){
+        Film film = filmRepository.findById(id).orElseThrow();
+        filmRepository.delete(film);
+        return "redirect:/film";
+    }
+    @GetMapping("/film/{id}")
+    public String filmDetails(@PathVariable(value = "id") long id, Model model) {
+        Optional<Film> film = filmRepository.findById(id);
+        ArrayList<Film> res = new ArrayList<>();
+        film.ifPresent(res::add);
+        model.addAttribute("film", res);
+        return "/details/filmDetails";
+    }
+
 }

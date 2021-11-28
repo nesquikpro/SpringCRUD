@@ -21,7 +21,8 @@ public class Session {
 
     @ManyToOne(optional = true, cascade = CascadeType.DETACH)
     private Hall hall;
-    @ManyToOne(optional = true, cascade = CascadeType.DETACH)
+
+    @ManyToOne(optional = true, cascade = CascadeType.REMOVE)
     private Film film;
 
     public Session(String time, Date date, Hall hall, Film film) {

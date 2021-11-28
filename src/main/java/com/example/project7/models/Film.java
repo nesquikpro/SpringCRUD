@@ -31,12 +31,11 @@ public class Film {
     @OneToMany(mappedBy = "hall", fetch = FetchType.EAGER)
     private Collection<Session> films;
 
-    public Film(String name, String time, String description, Genre genre, Collection<Session> films) {
+    public Film(String name, String time, String description, Genre genre) {
         this.name = name;
         this.time = time;
         this.description = description;
         this.genre = genre;
-        this.films = films;
     }
 
     public Film() {
