@@ -806,6 +806,36 @@ public class CinemaController {
   }
 
 
+  @GetMapping("/hall/addHall")
+  public String hallAdd(Hall hall, Model model) {
+    Iterable<Category> categories = categoryRepository.findAll();
+    model.addAttribute("category", categories);
+
+
+    return "/add/addHall";
+  }
+
+  @PostMapping("/hall/addHall")
+  public String hallAdd(@Valid Hall hall, BindingResult bindingResult,
+                        @RequestParam String name,
+                        @RequestParam Integer capacity,
+                        @RequestParam String categoryname,
+                        Model model) {
+    if (bindingResult.hasErrors())
+      return "/add/addHall";
+
+    List<Hall> res = hallRepository.findByName(name);
+    Category category1 = categoryRepository.findCategoryByName(categoryname);
+
+
+    Hall hall1 = new Hall(name, capacity, category1);
+    hallRepository.save(hall1);
+    return "redirect:/hall";
+  }
+
+
+  //////////////////////////////////////////////////////////////////////////
+
 //  @GetMapping("/employee/{id}/edit")
 //  public String employeeEdit(@PathVariable(value = "id") long id, Employee employee, Model model) {
 //
@@ -821,9 +851,6 @@ public class CinemaController {
 //    model.addAttribute("employeeEdit", res);
 //    return "/edit/employeeEdit";
 //  }
-//
-//
-//
 //
 //
 //  @PostMapping("/employee/{id}/edit")
@@ -859,33 +886,6 @@ public class CinemaController {
 //    return "redirect:/employee";
 //  }
 
-
-  @GetMapping("/hall/addHall")
-  public String hallAdd(Hall hall, Model model) {
-    Iterable<Category> categories = categoryRepository.findAll();
-    model.addAttribute("category", categories);
-
-
-    return "/add/addHall";
-  }
-
-  @PostMapping("/hall/addHall")
-  public String hallAdd(@Valid Hall hall, BindingResult bindingResult,
-                        @RequestParam String name,
-                        @RequestParam Integer capacity,
-                        @RequestParam String categoryname,
-                        Model model) {
-    if (bindingResult.hasErrors())
-      return "/add/addHall";
-
-    List<Hall> res = hallRepository.findByName(name);
-    Category category1 = categoryRepository.findCategoryByName(categoryname);
-
-
-    Hall hall1 = new Hall (name, capacity, category1);
-    hallRepository.save(hall1);
-    return "redirect:/hall";
-  }
 
 
 }

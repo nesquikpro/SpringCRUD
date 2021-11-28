@@ -29,6 +29,7 @@
             <input type="text" name="phone" th:field="*{phone}" placeholder="Введите телефон" class="form-control"><br>
             <div th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" style="color: red"></div>
             <label class="sr-only">Должность</label>
+
             <select name="name" class="form-control">
                 <div th:each="element : ${post}">
                     <option th:text="${element.name}"></option>
