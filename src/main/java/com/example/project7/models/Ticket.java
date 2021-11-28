@@ -21,6 +21,16 @@ public class Ticket {
 
     }
 
+
+    public Ticket(Cinema cinema, Hall hall, Place place, Employee employee) {
+
+        this.cinema = cinema;
+        this.hall = hall;
+        this.place = place;
+        this.employee = employee;
+    }
+
+
     public Long getId() {
         return id;
     }
@@ -58,13 +68,6 @@ public class Ticket {
     }
 
     public void setHall(Hall hall) {
-        this.hall = hall;
-    }
-
-    public Ticket(Place place, Cinema cinema, Employee employee, Hall hall) {
-        this.place = place;
-        this.cinema = cinema;
-        this.employee = employee;
         this.hall = hall;
     }
 }

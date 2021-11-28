@@ -1,5 +1,6 @@
 package com.example.project7.repository;
 
+import com.example.project7.models.Cinema;
 import com.example.project7.models.Employee;
 import org.springframework.data.repository.CrudRepository;
 
@@ -10,4 +11,6 @@ public interface EmployeeRepository extends CrudRepository<Employee, Long> {
 
     List<Employee> findByLastname(String lastname);
     List<Employee> findByLastnameContaining(String lastname);
+
+    Employee findEmployeeByLastname(String lastname);
 }

@@ -3,7 +3,6 @@ package com.example.project7.controllers;
 import com.example.project7.models.*;
 import com.example.project7.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,10 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.Valid;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -925,6 +922,54 @@ public class CinemaController {
         Session session1 = new Session(time, date, hall2, film1);
         sessionRepository.save(session1);
         return "redirect:/session";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    @GetMapping("/ticket/addTicket")
+    public String ticketAdd(Ticket ticket, Model model)
+    {
+        Iterable<Cinema> cinemas = cinemaRepository.findAll();
+        model.addAttribute("cinema",cinemas);
+
+        Iterable<Hall> halls = hallRepository.findAll();
+        model.addAttribute("hall",halls);
+
+        Iterable<Place> places = placeRepository.findAll();
+        model.addAttribute("place",places);
+
+        Iterable<Employee> employees = employeeRepository.findAll();
+        model.addAttribute("employee",employees);
+        return "/add/addTicket";
+    }
+
+    @PostMapping("/ticket/addTicket")
+    public String ticketAdd(@Valid Ticket ticket,
+                            @RequestParam String cinemaname,
+                            @RequestParam String hallname,
+                            @RequestParam Integer placerow,
+                            @RequestParam String employeelastname,
+                            Model model) {
+
+        Cinema cinema1 = cinemaRepository.findCinemaByName(cinemaname);
+        Hall hall1 = hallRepository.findHallByName(hallname);
+        Place place1 = placeRepository.findPlaceByRow(placerow);
+        Employee employee1 = employeeRepository.findEmployeeByLastname(employeelastname);
+
+
+
+        Ticket ticket1 = new Ticket(cinema1, hall1, place1, employee1);
+        ticketRepository.save(ticket1);
+        return "redirect:/ticket";
     }
 
 }

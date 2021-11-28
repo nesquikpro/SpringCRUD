@@ -8,4 +8,6 @@ import java.util.List;
 public interface TicketRepository extends CrudRepository<Ticket, Long> {
     List<Ticket> findByCinemaName(String name);
     List<Ticket> findByCinemaNameContaining(String name);
+
+    List<Ticket> findById(String id);
 }
