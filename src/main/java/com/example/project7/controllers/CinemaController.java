@@ -820,6 +820,15 @@ public class CinemaController {
         filmRepository.delete(film);
         return "redirect:/film";
     }
+
+
+
+
+
+
+
+
+
     @GetMapping("/film/{id}")
     public String filmDetails(@PathVariable(value = "id") long id, Model model) {
         Optional<Film> film = filmRepository.findById(id);
@@ -828,15 +837,6 @@ public class CinemaController {
         model.addAttribute("film", res);
         return "/details/filmDetails";
     }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -869,6 +869,56 @@ public class CinemaController {
         ticket.ifPresent(res::add);
         model.addAttribute("ticket", res);
         return "/details/ticketDetails";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @GetMapping("/film/addFilm")
+    public String filmAdd(Film film, Model model)
+    {
+        Iterable<Genre> genres = genreRepository.findAll();
+        model.addAttribute("genre",genres);
+        return "/add/addFilm";
+    }
+
+    @PostMapping("/film/addFilm")
+    public String filmAdd(@Valid Film film, BindingResult bindingResult,
+                          @RequestParam String name,
+                          @RequestParam String genrename,
+                          @RequestParam String time,
+                          @RequestParam String description,
+                          Model model) {
+        if (bindingResult.hasErrors())
+            return "/add/addFilm";
+
+        List<Film> res = filmRepository.findByName(name);
+        Genre genre1 = genreRepository.findFilmByName(genrename);
+        if (res.size()>0)
+        {
+            ObjectError error = new ObjectError("name","Такое название уже есть!");
+            bindingResult.addError(error);
+            return "/add/addFilm";
+        }
+        else {
+            Film film1 = new Film(name, time, description, genre1);
+            filmRepository.save(film1);
+            return "redirect:/film";
+        }
     }
 
 }

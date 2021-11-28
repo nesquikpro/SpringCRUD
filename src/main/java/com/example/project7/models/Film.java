@@ -18,6 +18,8 @@ public class Film {
     @Size(min=3, max=30)
     private String name;
 
+    @NotEmpty(message = "Поле не может быть пустым!")
+    @NotNull(message = "Поле не может быть пустым!")
     private String time;
 
     @NotEmpty(message = "Поле не может быть пустым!")
@@ -31,14 +33,15 @@ public class Film {
     @OneToMany(mappedBy = "hall", fetch = FetchType.EAGER)
     private Collection<Session> films;
 
+    public Film() {
+
+    }
+
     public Film(String name, String time, String description, Genre genre) {
         this.name = name;
         this.time = time;
         this.description = description;
         this.genre = genre;
-    }
-
-    public Film() {
 
     }
 
@@ -89,4 +92,5 @@ public class Film {
     public void setFilms(Collection<Session> films) {
         this.films = films;
     }
+
 }

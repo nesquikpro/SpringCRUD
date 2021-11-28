@@ -6,5 +6,36 @@
 </head>
 <body>
 <div th:insert="/footer :: header"></div>
+
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <form action="/film/addFilm" method="post" th:object="${film}">
+
+            <label class="sr-only">Название</label>
+            <input type="text" name="name" th:field="*{name}" placeholder="Введите имя" class="form-control"><br>
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red"></div>
+            <label class="sr-only">Время</label>
+            <input type="text" name="time" th:field="*{time}" placeholder="Введите фамилию" class="form-control"><br>
+            <div th:if="${#fields.hasErrors('time')}"  th:errors="*{time}" style="color: red"></div>
+            <label class="sr-only">Описание</label>
+            <input type="text" name="description" th:field="*{description}" placeholder="Введите отчество" class="form-control"><br>
+            <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" style="color: red"></div>
+
+
+
+            <label class="sr-only">Жанр</label>
+            <select name="genrename" class="form-control">
+                <div th:each="element : ${genre}">
+                    <option th:text="${element.name}"></option>
+                </div>
+            </select>
+            <br>
+            <button type="submit" class="btn btn-warning">Добавить</button>
+        </form>
+
+    </div>
+</div>
+
 </body>
 </html>

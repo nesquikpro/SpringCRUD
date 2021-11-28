@@ -18,7 +18,7 @@ public class Genre {
     private String name;
 
     @OneToMany(mappedBy = "genre", fetch = FetchType.EAGER)
-    private Collection<Film> genre;
+    private Collection<Film> films;
 
     public Genre() {
 
@@ -41,15 +41,11 @@ public class Genre {
     }
 
     public Collection<Film> getGenre() {
-        return genre;
+        return films;
     }
 
     public void setGenre(Collection<Film> genre) {
-        this.genre = genre;
+        this.films = genre;
     }
 
-    public Genre(String name, Collection<Film> genre) {
-        this.name = name;
-        this.genre = genre;
-    }
 }
