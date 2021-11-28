@@ -761,11 +761,30 @@ public class CinemaController {
     }
 
     @PostMapping("/session/sessionFilter")
-    public String sessionResult(@RequestParam Date date, Model model)
+    public String sessionResult(@RequestParam String time, Model model)
     {
-        List<Session> result_str = sessionRepository.findByDateContaining(date);
+        List<Session> result = sessionRepository.findByTime(time);
+        model.addAttribute("result", result);
+
+        List<Session> result_str = sessionRepository.findByTimeContaining(time);
         model.addAttribute("result_str", result_str);
         return "/filter/sessionFilter";
+    }
+
+    @GetMapping("/session/{id}/remove")
+    public String sessionsPostDelete(@PathVariable(value = "id") long id, Model model){
+        Session sessions = sessionRepository.findById(id).orElseThrow();
+        sessionRepository.delete(sessions);
+        return "redirect:/session";
+    }
+
+    @GetMapping("/session/{id}")
+    public String SessionDetails(@PathVariable(value = "id") long id, Model model) {
+        Optional<Session> sessions = sessionRepository.findById(id);
+        ArrayList<Session> res = new ArrayList<>();
+        sessions.ifPresent(res::add);
+        model.addAttribute("sessions", res);
+        return "/details/sessionDetails";
     }
 
 }

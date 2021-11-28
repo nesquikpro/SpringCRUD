@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="/footer :: header"></div>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+<h2 class="h2class">Сеанс:</h2>
+<table class="table table-striped table-dark";>
+    <thead>
+    <tr>
+        <th scope="col">Дата</th>
+        <th scope="col">Время</th>
+        <th scope="col">Фильм</th>
+        <th scope="col">Зал</th>
+    </tr>
+    </thead>
+    <div th:each="el : ${sessions}">
+        <tr>
+            <td><h3 th:text="${el.date}"></h3></td>
+            <td><h3 th:text="${el.time}"></h3></td>
+            <td><h3 th:text="${el.film.name}"></h3></td>
+            <td><h3 th:text="${el.hall.name}"></h3></td>
+        </tr>
+    </div>
+</table>
+    </div>
+</div>
+</body>
+</html>
