@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -745,6 +746,29 @@ public class CinemaController {
         Hall hall = hallRepository.findById(id).orElseThrow();
         hallRepository.delete(hall);
         return "redirect:/hall";
+    }
+
+
+
+
+
+
+
+
+    @GetMapping("/session/sessionFilter")
+    public String sessionFilter(Model model){
+        return "/filter/sessionFilter";
+    }
+
+    @PostMapping("/session/sessionFilter")
+    public String sessionResult(@RequestParam Date date, Model model)
+    {
+        List<Session> result = sessionRepository.findByDate(date);
+        model.addAttribute("result", result);
+
+        List<Session> result_str = sessionRepository.findByDateContaining(date);
+        model.addAttribute("result_str", result_str);
+        return "/filter/sessionFilter";
     }
 
 }
