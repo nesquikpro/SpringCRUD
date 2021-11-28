@@ -162,7 +162,7 @@ public class CinemaController {
 
     @PostMapping("/category/addCategory")
     public String categoryAdd(@Valid Category category, BindingResult bindingResultresult,
-                           @RequestParam String name, Model model){
+                              @RequestParam String name, Model model){
         if(bindingResultresult.hasErrors())
             return "/add/addCategory";
         List<Category> res = categoryRepository.findByName(name);
@@ -185,7 +185,7 @@ public class CinemaController {
 
     @PostMapping("/genre/addGenre")
     public String genreAdd(@Valid Genre genre, BindingResult bindingResultresult,
-                              @RequestParam String name, Model model){
+                           @RequestParam String name, Model model){
         if(bindingResultresult.hasErrors())
             return "/add/addGenre";
         List<Genre> res = genreRepository.findByName(name);
@@ -208,13 +208,13 @@ public class CinemaController {
 
     @PostMapping("/place/addPlace")
     public String placeAdd(@Valid Place place, BindingResult bindingResultresult,
-                            Model model){
+                           Model model){
         if(bindingResultresult.hasErrors())
             return "/add/addPlace";
 
         else
             placeRepository.save(place);
-            return "redirect:/place";
+        return "redirect:/place";
 
     }
 
@@ -225,7 +225,7 @@ public class CinemaController {
 
     @PostMapping("/cinema/addCinema")
     public String cinemaAdd(@Valid Cinema cinema, BindingResult bindingResultresult,
-                           @RequestParam String name, Model model){
+                            @RequestParam String name, Model model){
         if(bindingResultresult.hasErrors())
             return "/add/addCinema";
         List<Cinema> res = cinemaRepository.findByName(name);
@@ -259,8 +259,8 @@ public class CinemaController {
 
     @PostMapping("/post/{id}/edit")
     public String postPostUpdate(@Valid Post post,BindingResult bindingResultresult,
-                                  @PathVariable(value = "id") long id, @RequestParam String name,
-                                  Model model){
+                                 @PathVariable(value = "id") long id, @RequestParam String name,
+                                 Model model){
         List<Post> res = postRepository.findByName(name);
 
         if(bindingResultresult.hasErrors()){
@@ -310,8 +310,8 @@ public class CinemaController {
 
     @PostMapping("/category/{id}/edit")
     public String categoryPostUpdate(@Valid Category category,BindingResult bindingResultresult,
-                                 @PathVariable(value = "id") long id, @RequestParam String name,
-                                 Model model){
+                                     @PathVariable(value = "id") long id, @RequestParam String name,
+                                     Model model){
         List<Category> res = categoryRepository.findByName(name);
 
         if(bindingResultresult.hasErrors()){
@@ -361,8 +361,8 @@ public class CinemaController {
 
     @PostMapping("/genre/{id}/edit")
     public String genrePostUpdate(@Valid Genre genre,BindingResult bindingResultresult,
-                                     @PathVariable(value = "id") long id, @RequestParam String name,
-                                     Model model){
+                                  @PathVariable(value = "id") long id, @RequestParam String name,
+                                  Model model){
         List<Genre> res = genreRepository.findByName(name);
 
         if(bindingResultresult.hasErrors()){
@@ -412,8 +412,8 @@ public class CinemaController {
 
     @PostMapping("/cinema/{id}/edit")
     public String cinemaPostUpdate(@Valid Cinema cinema,BindingResult bindingResultresult,
-                                  @PathVariable(value = "id") long id, @RequestParam String name,
-                                  Model model){
+                                   @PathVariable(value = "id") long id, @RequestParam String name,
+                                   Model model){
         List<Cinema> res = cinemaRepository.findByName(name);
 
         if(bindingResultresult.hasErrors()){
@@ -463,8 +463,8 @@ public class CinemaController {
 
     @PostMapping("/place/{id}/edit")
     public String placePostUpdate(@Valid Place place,BindingResult bindingResultresult,
-                                   @PathVariable(value = "id") long id, @RequestParam Integer row,
-                                   Model model){
+                                  @PathVariable(value = "id") long id, @RequestParam Integer row,
+                                  Model model){
         List<Place> res = placeRepository.findByRow(row);
 
         if(bindingResultresult.hasErrors()){
@@ -527,7 +527,7 @@ public class CinemaController {
                               @RequestParam String email,
                               @RequestParam String phone,
                               @RequestParam String name,
-                             Model model) {
+                              Model model) {
         if (bindingResult.hasErrors())
             return "/add/addEmployee";
 
@@ -913,7 +913,7 @@ public class CinemaController {
                              @RequestParam String date,
                              @RequestParam String filmname,
                              @RequestParam String hallname,
-                          Model model) {
+                             Model model) {
         if (bindingResult.hasErrors())
             return "/add/addSession";
 
@@ -922,9 +922,9 @@ public class CinemaController {
         Hall hall2 = hallRepository.findHallByName(hallname);
 
 
-            Session session1 = new Session(time, date, hall2, film1);
-            sessionRepository.save(session1);
-            return "redirect:/session";
+        Session session1 = new Session(time, date, hall2, film1);
+        sessionRepository.save(session1);
+        return "redirect:/session";
     }
 
 }
