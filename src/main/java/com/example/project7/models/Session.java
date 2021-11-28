@@ -18,7 +18,6 @@ public class Session {
 
     private Date date;
 
-
     @ManyToOne(optional = true, cascade = CascadeType.DETACH)
     private Hall hall;
 

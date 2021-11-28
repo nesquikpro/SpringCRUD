@@ -829,4 +829,46 @@ public class CinemaController {
         return "/details/filmDetails";
     }
 
+
+
+
+
+
+
+
+
+
+
+
+    @GetMapping("/ticket/ticketFilter")
+    public String ticketFilter(Model model){
+        return "/filter/ticketFilter";
+    }
+
+    @PostMapping("/ticket/ticketFilter")
+    public String ticketResult(@RequestParam String name, Model model)
+    {
+        List<Ticket> result = ticketRepository.findByCinemaName(name);
+        model.addAttribute("result", result);
+
+        List<Ticket> result_str = ticketRepository.findByCinemaNameContaining(name);
+        model.addAttribute("result_str", result_str);
+        return "/filter/ticketFilter";
+    }
+
+    @GetMapping("/ticket/{id}/remove")
+    public String ticketPostDelete(@PathVariable(value = "id") long id, Model model){
+        Ticket ticket = ticketRepository.findById(id).orElseThrow();
+        ticketRepository.delete(ticket);
+        return "redirect:/ticket";
+    }
+    @GetMapping("/ticket/{id}")
+    public String ticketDetails(@PathVariable(value = "id") long id, Model model) {
+        Optional<Ticket> ticket = ticketRepository.findById(id);
+        ArrayList<Ticket> res = new ArrayList<>();
+        ticket.ifPresent(res::add);
+        model.addAttribute("ticket", res);
+        return "/details/ticketDetails";
+    }
+
 }
