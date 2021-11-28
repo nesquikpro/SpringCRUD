@@ -20,7 +20,7 @@ public class Post {
     @Min(value = 45000)
     private Integer salary;
 
-    @OneToMany(mappedBy = "post", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
     private Collection<Employee> employees;
 
 

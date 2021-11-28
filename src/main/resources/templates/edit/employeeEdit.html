@@ -32,6 +32,7 @@
             <label class="sr-only">Телефон</label>
             <input type="text" th:value="${el.phone}" name="phone" class="form-control">
             <div th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" style="color: red"></div>
+
             <label class="sr-only">Должность</label>
             <select name="name" class="form-control form-control-sm">
                 <div th:each="element : ${post}">
